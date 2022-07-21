@@ -24,4 +24,9 @@ public class ProductService {
         return product;
     }
 
+    public Optional<Product> findByCod(String cod) {
+        Optional<Product> product = repository.findByCod(cod);
+        return product;
+    }
+
 }

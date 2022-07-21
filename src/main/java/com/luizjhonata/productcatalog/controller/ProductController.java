@@ -19,16 +19,25 @@ public class ProductController {
     @Autowired
     private ProductService service;
 
+    //Method to list all products
     @GetMapping
     public ResponseEntity<List<Product>> findAll() {
         List<Product> listProduct = service.findAll();
         return ResponseEntity.ok().body(listProduct);
     }
 
-    @GetMapping(value = "/{id}")
+    //Method to find a product by id
+    @GetMapping(value = "/id/{id}")
     public ResponseEntity<Optional<Product>> findById(@PathVariable Integer id) {
         Optional<Product> product = service.findById(id);
         return ResponseEntity.ok().body(product);
     }
-    
+
+    //Method to find a product by cod 
+    @GetMapping(value = "/cod/{cod}")
+    public ResponseEntity<Optional<Product>> findByCod(@PathVariable String cod) {
+        Optional<Product> product = service.findByCod(cod);
+        return ResponseEntity.ok().body(product);
+    }
+
 }
