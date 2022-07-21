@@ -4,10 +4,7 @@ import com.luizjhonata.productcatalog.entities.Product;
 import com.luizjhonata.productcatalog.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -33,11 +30,18 @@ public class ProductController {
         return ResponseEntity.ok().body(product);
     }
 
-    //Method to find a product by cod 
+    //Method to find a product by cod
     @GetMapping(value = "/cod/{cod}")
     public ResponseEntity<Optional<Product>> findByCod(@PathVariable String cod) {
         Optional<Product> product = service.findByCod(cod);
         return ResponseEntity.ok().body(product);
+    }
+
+    @PostMapping(value = "/insert")
+    public ResponseEntity<Product> insert(@RequestBody Product product) {
+        product = service.insert(product);
+        return ResponseEntity.ok(product);
+
     }
 
 }
