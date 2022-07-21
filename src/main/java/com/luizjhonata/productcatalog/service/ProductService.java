@@ -5,6 +5,7 @@ import com.luizjhonata.productcatalog.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -38,5 +39,23 @@ public class ProductService {
         product = repository.save(product);
         return product;
     }
+
+    public Product update(@RequestBody Product product) {
+
+        if(repository.existsById(product.getId()))
+            repository.save(product);
+
+        return product;
+    }
+
+//    public Product update(@PathVariable Integer id) {
+//        Optional<Product> product = repository.findById(id);
+//        if(productbD.isPresent()) {
+//            repository.save(product);
+//        }
+//
+//        return product;
+//    }
+
 
 }
