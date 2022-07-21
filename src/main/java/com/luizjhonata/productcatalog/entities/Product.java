@@ -15,17 +15,17 @@ public class Product {
 
     private Double price;
 
-    private Integer weigth;
+    private Double weight;
 
     public Product() {
     }
 
-    public Product(Integer id, String cod, String description, Double price, Integer weigth) {
+    public Product(Integer id, String cod, String description, Double price, Double weight) {
         this.id = id;
         this.cod = cod;
         this.description = description;
         this.price = price;
-        this.weigth = weigth;
+        this.weight = weight;
     }
 
     public Integer getId() {
@@ -60,11 +60,11 @@ public class Product {
         this.price = price;
     }
 
-    public Integer getWeigth() {
-        return weigth;
+    public Double getWeight() {
+        return weight;
     }
 
-    public void setWeigth(Integer weigth) {
-        this.weigth = weigth;
+    public void setWeight(Double weight) {
+        this.weight = weight;
     }
 }
