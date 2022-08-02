@@ -87,5 +87,5 @@ public class UserModel implements UserDetails, Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
 }
