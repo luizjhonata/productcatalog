@@ -4,6 +4,7 @@ import com.luizjhonata.productcatalog.models.ProductModel;
 import com.luizjhonata.productcatalog.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import java.util.List;
 import java.util.Optional;
@@ -14,6 +15,7 @@ public class ProductService {
     @Autowired
     private ProductRepository repository;
 
+    @Transactional(readOnly = true)
     public List<ProductModel> findAll(){
         List<ProductModel> listProductModels = repository.findAll();
         return listProductModels;
