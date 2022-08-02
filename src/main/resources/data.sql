@@ -17,6 +17,7 @@ INSERT INTO tb_product (cod, description, price, weight) VALUES('TEJGSFDN400X200
 
 INSERT INTO tb_user (name, username, password) VALUES('CREATOR', 'admin', '$2a$10$e.rSdqIgDDcvsGo4tR.sJ.RxqHvnPw0rVIjsOutuVLNWDjLtGImm6');
 
+INSERT INTO tb_user (name, username, password) VALUES('NORMAL USER', 'normaluser', '$2a$10$C38ITkzDINosJPYljGXJpOtsRx6kzSTbZ0A/o/q1uAND5DOQC2YVq');
 
 INSERT INTO tb_role (role_name) VALUES('ROLE_ADMIN');
 
@@ -24,4 +25,4 @@ INSERT INTO tb_role (role_name) VALUES('ROLE_USER');
 
 INSERT INTO tb_user_roles (user_id, role_id) VALUES(1, 1);
 
-
+INSERT INTO tb_user_roles (user_id, role_id) VALUES(2, 2);
