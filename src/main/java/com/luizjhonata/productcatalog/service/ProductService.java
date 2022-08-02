@@ -15,7 +15,6 @@ public class ProductService {
     @Autowired
     private ProductRepository repository;
 
-    @Transactional(readOnly = true)
     public List<ProductModel> findAll(){
         List<ProductModel> listProductModels = repository.findAll();
         return listProductModels;
