@@ -1,6 +1,6 @@
 package com.luizjhonata.productcatalog.service;
 
-import com.luizjhonata.productcatalog.entities.Product;
+import com.luizjhonata.productcatalog.models.ProductModel;
 import com.luizjhonata.productcatalog.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,34 +14,34 @@ public class ProductService {
     @Autowired
     private ProductRepository repository;
 
-    public List<Product> findAll(){
-        List<Product> listProducts = repository.findAll();
-        return listProducts;
+    public List<ProductModel> findAll(){
+        List<ProductModel> listProductModels = repository.findAll();
+        return listProductModels;
     }
 
-    public Optional<Product> findById(Integer id) {
-        Optional<Product> product = repository.findById(id);
+    public Optional<ProductModel> findById(Integer id) {
+        Optional<ProductModel> product = repository.findById(id);
         return product;
     }
 
-    public Optional<Product> findByCod(String cod) {
-        Optional<Product> product = repository.findByCod(cod);
+    public Optional<ProductModel> findByCod(String cod) {
+        Optional<ProductModel> product = repository.findByCod(cod);
         return product;
     }
 
 
 
-    public Product insert(@RequestBody Product product){
-        product = repository.save(product);
-        return product;
+    public ProductModel insert(@RequestBody ProductModel productModel){
+        productModel = repository.save(productModel);
+        return productModel;
     }
 
-    public Product update(@RequestBody Product product) {
+    public ProductModel update(@RequestBody ProductModel productModel) {
 
-        if(repository.existsById(product.getId()))
-            repository.save(product);
+        if(repository.existsById(productModel.getId()))
+            repository.save(productModel);
 
-        return product;
+        return productModel;
     }
 
 

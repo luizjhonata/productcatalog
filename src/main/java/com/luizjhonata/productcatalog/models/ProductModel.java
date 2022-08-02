@@ -1,10 +1,10 @@
-package com.luizjhonata.productcatalog.entities;
+package com.luizjhonata.productcatalog.models;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "tb_product")
-public class Product {
+public class ProductModel {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -17,10 +17,10 @@ public class Product {
 
     private Double weight;
 
-    public Product() {
+    public ProductModel() {
     }
 
-    public Product(Integer id, String cod, String description, Double price, Double weight) {
+    public ProductModel(Integer id, String cod, String description, Double price, Double weight) {
         this.id = id;
         this.cod = cod;
         this.description = description;
