@@ -14,8 +14,8 @@ import java.util.UUID;
 public class UserModel implements UserDetails, Serializable {
     private static final long serialVersionUID = 1L;
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID userId;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer userId;
 
     private String name;
 
@@ -64,11 +64,11 @@ public class UserModel implements UserDetails, Serializable {
         return true;
     }
 
-    public UUID getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(UUID userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 

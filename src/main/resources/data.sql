@@ -14,3 +14,14 @@ INSERT INTO tb_product (cod, description, price, weight) VALUES('EBFDN200', 'EXT
 INSERT INTO tb_product (cod, description, price, weight) VALUES('TEJSGDN200', 'TE BOLSA DN200', 987.41, 33);
 INSERT INTO tb_product (cod, description, price, weight) VALUES('TEFFDN300', 'TE FLANGEADO DN300', 3309.48, 116);
 INSERT INTO tb_product (cod, description, price, weight) VALUES('TEJGSFDN400X200', 'TE BOLSA FLANGE DN400 X DN200', 2972, 83);
+
+INSERT INTO tb_user (name, username, password) VALUES('CREATOR', 'admin', 'admin');
+INSERT INTO tb_user (name, username, password) VALUES('NORMAL USER', 'usuario', 'usuario');
+
+INSERT INTO tb_role (role_name) VALUES('ROLE_ADMIN');
+
+INSERT INTO tb_role (role_name) VALUES('ROLE_USER');
+
+INSERT INTO tb_user_roles (user_id, role_id) VALUES(1, 1);
+INSERT INTO tb_user_roles (user_id, role_id) VALUES(2, 2);
+
