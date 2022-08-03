@@ -23,7 +23,8 @@ public class UserModel implements UserDetails, Serializable {
 
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    //tirei o (fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable(name = "tb_user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
