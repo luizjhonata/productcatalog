@@ -1,7 +1,7 @@
 package com.luizjhonata.productcatalog.security;
 
 import com.luizjhonata.productcatalog.models.UserModel;
-import com.luizjhonata.productcatalog.repository.UserRepository;
+import com.luizjhonata.productcatalog.repository.UserModelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,11 +17,11 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
-    UserRepository userRepository;
+    UserModelRepository userModelRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserModel userModel = userRepository.findByUsername(username)
+        UserModel userModel = userModelRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + username));
         return new User(userModel.getUsername(), userModel.getPassword(), true, true, true,true, userModel.getAuthorities());
     }

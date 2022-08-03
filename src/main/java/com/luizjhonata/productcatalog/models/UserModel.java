@@ -16,11 +16,11 @@ public class UserModel implements UserDetails, Serializable {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userId;
-
+    @Column(nullable = false)
     private String name;
-
+    @Column(nullable = false, unique = true)
     private String username;
-
+    @Column(nullable = false)
     private String password;
 
     //tirei o (fetch = FetchType.EAGER)
@@ -89,4 +89,11 @@ public class UserModel implements UserDetails, Serializable {
         this.password = password;
     }
 
+    public List<RoleModel> getRoleModels() {
+        return roleModels;
+    }
+
+    public void setRoleModels(List<RoleModel> roleModels) {
+        this.roleModels = roleModels;
+    }
 }
