@@ -44,18 +44,20 @@ public class ProductService {
     public ProductModelDTO insert(@RequestBody ProductModelDTO productModelDTO){
         ProductModel newProduct = new ProductModel(null, productModelDTO.getCod(), productModelDTO.getDescription(),
                 productModelDTO.getPrice(), productModelDTO.getWeight());
-        newProduct = repository.save(newProduct);
+        repository.save(newProduct);
         return new ProductModelDTO(newProduct);
     }
 
-    public ProductModel update(@RequestBody ProductModel productModel) {
-
-        if(repository.existsById(productModel.getId()))
-            repository.save(productModel);
-
+    //Method to update all data in a product
+    public ProductModelDTO update(@RequestBody ProductModelDTO productModel) {
+        if(repository.existsById(productModel.getId())) {
+            ProductModel updateProduct = repository.getReferenceById(productModel.getId());
+            updateProduct.setCod(productModel.getCod());
+            updateProduct.setDescription(productModel.getDescription());
+            updateProduct.setPrice(productModel.getPrice());
+            updateProduct.setWeight(productModel.getWeight());
+            repository.save(updateProduct);
+        }
         return productModel;
     }
-
-
-
 }
