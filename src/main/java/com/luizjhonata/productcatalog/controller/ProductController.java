@@ -38,11 +38,11 @@ public class ProductController {
         return ResponseEntity.ok(product);
     }
 
-    //Method to find a product by cod
+    //Endpoint to find a product by cod
     @GetMapping(value = "/cod/{cod}")
-    public ResponseEntity<Optional<ProductModel>> findByCod(@PathVariable String cod) {
-        Optional<ProductModel> product = service.findByCod(cod);
-        return ResponseEntity.ok().body(product);
+    public ResponseEntity<List<ProductModelDTO>> findByCod(@PathVariable String cod) {
+        List<ProductModelDTO> product = service.findByCod(cod);
+        return ResponseEntity.ok(product);
     }
 
     @PostMapping(value = "/insert")

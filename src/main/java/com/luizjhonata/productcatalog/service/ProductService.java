@@ -35,9 +35,10 @@ public class ProductService {
         return product.stream().map(ProductModelDTO::new).collect(Collectors.toList());
     }
 
-    public Optional<ProductModel> findByCod(String cod) {
+    //Method to find a product by cod
+    public List<ProductModelDTO> findByCod(String cod) {
         Optional<ProductModel> product = repository.findByCod(cod);
-        return product;
+        return product.stream().map(ProductModelDTO::new).collect(Collectors.toList());
     }
 
     public ProductModel insert(@RequestBody ProductModel productModel){
