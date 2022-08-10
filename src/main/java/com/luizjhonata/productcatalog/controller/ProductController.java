@@ -31,11 +31,11 @@ public class ProductController {
         return ResponseEntity.ok().body(listProduct);
     }
 
-    //Method to find a product by id
+    //Endpoint to find a product by id
     @GetMapping(value = "/id/{id}")
-    public ResponseEntity<Optional<ProductModel>> findById(@PathVariable Integer id) {
-        Optional<ProductModel> product = service.findById(id);
-        return ResponseEntity.ok().body(product);
+    public ResponseEntity<List<ProductModelDTO>> findById(@PathVariable Integer id) {
+        List<ProductModelDTO> product = service.findById(id);
+        return ResponseEntity.ok(product);
     }
 
     //Method to find a product by cod

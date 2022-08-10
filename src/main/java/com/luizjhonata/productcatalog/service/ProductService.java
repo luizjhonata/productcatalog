@@ -3,6 +3,7 @@ package com.luizjhonata.productcatalog.service;
 import com.luizjhonata.productcatalog.dto.ProductModelDTO;
 import com.luizjhonata.productcatalog.models.ProductModel;
 import com.luizjhonata.productcatalog.repository.ProductRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,17 +29,16 @@ public class ProductService {
         return listProduct.stream().map(x -> new ProductModelDTO(x)).collect(Collectors.toList());
     }
 
-    public Optional<ProductModel> findById(Integer id) {
+    //Method to find a product by id
+    public List<ProductModelDTO> findById(Integer id) {
         Optional<ProductModel> product = repository.findById(id);
-        return product;
+        return product.stream().map(ProductModelDTO::new).collect(Collectors.toList());
     }
 
     public Optional<ProductModel> findByCod(String cod) {
         Optional<ProductModel> product = repository.findByCod(cod);
         return product;
     }
-
-
 
     public ProductModel insert(@RequestBody ProductModel productModel){
         productModel = repository.save(productModel);
