@@ -1,5 +1,6 @@
 package com.luizjhonata.productcatalog.controller;
 
+import com.luizjhonata.productcatalog.dto.ProductModelDTO;
 import com.luizjhonata.productcatalog.models.ProductModel;
 import com.luizjhonata.productcatalog.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +17,18 @@ public class ProductController {
     @Autowired
     private ProductService service;
 
-    //Method to list all products
+    //Endpoint to list all products sorted by id number
     @GetMapping
-    public ResponseEntity<List<ProductModel>> findAll() {
-        List<ProductModel> listProductModel = service.findAll();
-        return ResponseEntity.ok().body(listProductModel);
+    public ResponseEntity<List<ProductModelDTO>> findAll() {
+        List<ProductModelDTO> listProduct = service.findAll();
+        return ResponseEntity.ok().body(listProduct);
+    }
+
+    //Endpoint to list all products sorted by cod in alphabetical order
+    @GetMapping(value = "/sorted")
+    public ResponseEntity<List<ProductModelDTO>> findAllByOrderCodAsc() {
+        List<ProductModelDTO> listProduct = service.findAllByOrderCodAsc();
+        return ResponseEntity.ok().body(listProduct);
     }
 
     //Method to find a product by id

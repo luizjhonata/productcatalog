@@ -1,13 +1,14 @@
 package com.luizjhonata.productcatalog.service;
 
+import com.luizjhonata.productcatalog.dto.ProductModelDTO;
 import com.luizjhonata.productcatalog.models.ProductModel;
 import com.luizjhonata.productcatalog.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
@@ -15,9 +16,16 @@ public class ProductService {
     @Autowired
     private ProductRepository repository;
 
-    public List<ProductModel> findAll(){
-        List<ProductModel> listProductModels = repository.findAll();
-        return listProductModels;
+    //Method to list all products sorted by id
+    public List<ProductModelDTO> findAll(){
+        List<ProductModel> listProduct = repository.findAll();
+        return listProduct.stream().map(x -> new ProductModelDTO(x)).collect(Collectors.toList());
+    }
+
+    //Method to list all products sorted by cod in alphabetical order
+    public List<ProductModelDTO> findAllByOrderCodAsc() {
+        List<ProductModel> listProduct = repository.findAllByOrderByCodAsc();
+        return listProduct.stream().map(x -> new ProductModelDTO(x)).collect(Collectors.toList());
     }
 
     public Optional<ProductModel> findById(Integer id) {
