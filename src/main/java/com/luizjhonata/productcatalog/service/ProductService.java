@@ -3,7 +3,6 @@ package com.luizjhonata.productcatalog.service;
 import com.luizjhonata.productcatalog.dto.ProductModelDTO;
 import com.luizjhonata.productcatalog.models.ProductModel;
 import com.luizjhonata.productcatalog.repository.ProductRepository;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -41,9 +40,12 @@ public class ProductService {
         return product.stream().map(ProductModelDTO::new).collect(Collectors.toList());
     }
 
-    public ProductModel insert(@RequestBody ProductModel productModel){
-        productModel = repository.save(productModel);
-        return productModel;
+    //Method to insert a new product
+    public ProductModelDTO insert(@RequestBody ProductModelDTO productModelDTO){
+        ProductModel newProduct = new ProductModel(null, productModelDTO.getCod(), productModelDTO.getDescription(),
+                productModelDTO.getPrice(), productModelDTO.getWeight());
+        newProduct = repository.save(newProduct);
+        return new ProductModelDTO(newProduct);
     }
 
     public ProductModel update(@RequestBody ProductModel productModel) {

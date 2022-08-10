@@ -6,9 +6,9 @@ import com.luizjhonata.productcatalog.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "products")
@@ -45,17 +45,18 @@ public class ProductController {
         return ResponseEntity.ok(product);
     }
 
+    //Endpoint to insert a new prduct
     @PostMapping(value = "/insert")
-    public ResponseEntity<ProductModel> insert(@RequestBody ProductModel productModel) {
+    public ResponseEntity<ProductModelDTO> insert(@RequestBody ProductModelDTO productModel) {
         productModel = service.insert(productModel);
-        return ResponseEntity.ok(productModel);
-
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+                .buildAndExpand(productModel.getId()).toUri();
+        return ResponseEntity.created(uri).body(productModel);
     }
 
     @PutMapping(value = "/update/{id}")
     public ResponseEntity<ProductModel> update(@PathVariable Integer id, @RequestBody ProductModel productModel) {
         productModel = service.update(productModel);
-
         return ResponseEntity.ok(productModel);
 
     }
