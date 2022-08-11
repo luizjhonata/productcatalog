@@ -60,4 +60,31 @@ public class ProductController {
         return ResponseEntity.ok(productModel);
     }
 
+    //Endpoint to update the cod in a product
+    @PutMapping(value = "/update/cod/{id}")
+    public ResponseEntity<ProductModelDTO> updateCod(@PathVariable Integer id, String cod) {
+        ProductModelDTO updateCodProduct = service.updateCod(id, cod);
+        return ResponseEntity.ok(updateCodProduct);
+    }
+
+    //Endpoint to update the Description in a product
+    @PutMapping(value = "/update/desc/{id}")
+    public ResponseEntity<ProductModelDTO> updateDescription(@PathVariable Integer id, String description) {
+        ProductModelDTO updateDescriptionProduct = service.updateDescription(id, description);
+        return ResponseEntity.ok(updateDescriptionProduct);
+    }
+
+    //Endpoint to update the Price in a product
+    @PutMapping(value = "/update/price/{id}")
+    public ResponseEntity<ProductModelDTO> updatePrice(@PathVariable Integer id, Double price) {
+        ProductModelDTO updatePriceProduct = service.updatePrice(id, price);
+        return ResponseEntity.ok(updatePriceProduct);
+    }
+
+    //Endpoint to update the Weight in a product
+    @PutMapping(value = "/update/weight/{id}")
+    public ResponseEntity<ProductModelDTO> updateWeight(@PathVariable Integer id, Double weight) {
+        ProductModelDTO updateWeightProduct = service.updateWeight(id, weight);
+        return ResponseEntity.ok(updateWeightProduct);
+    }
 }

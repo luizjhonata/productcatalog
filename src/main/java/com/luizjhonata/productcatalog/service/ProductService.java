@@ -60,4 +60,46 @@ public class ProductService {
         }
         return productModel;
     }
+
+    //Method to update the cod in a product
+    public ProductModelDTO updateCod(Integer id, String cod) {
+        if(repository.existsById(id)) {
+            ProductModel updateCodProduct = repository.getReferenceById(id);
+            updateCodProduct.setCod(cod);
+            repository.save(updateCodProduct);
+        }
+        return null;
+    }
+
+    //Method to update the description in a product
+    public ProductModelDTO updateDescription(Integer id, String Description) {
+        if(repository.existsById(id)) {
+            ProductModel updateDescriptionProduct = repository.getReferenceById(id);
+            updateDescriptionProduct.setDescription(Description);
+            repository.save(updateDescriptionProduct);
+        }
+        return null;
+    }
+
+    //Method to update the price in a product
+    public ProductModelDTO updatePrice(Integer id, Double price) {
+        if(repository.existsById(id)) {
+            ProductModel updatePriceProduct = repository.getReferenceById(id);
+            updatePriceProduct.setPrice(price);
+            repository.save(updatePriceProduct);
+        }
+        return null;
+    }
+
+    //Method to update the Weight in a product
+    public ProductModelDTO updateWeight(Integer id, Double weight) {
+        if(repository.existsById(id)) {
+            ProductModel updateWeightProduct = repository.getReferenceById(id);
+            updateWeightProduct.setWeight(weight);
+            repository.save(updateWeightProduct);
+        }
+        return null;
+    }
+
+
 }
