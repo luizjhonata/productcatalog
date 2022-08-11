@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -33,6 +34,18 @@ public class UserModelService {
     //Method to list all users
     public List<UserModelDTO> findAll() {
         List<UserModel> listUserModel = repository.findAll();
-        return listUserModel.stream().map(x -> new UserModelDTO(x)).collect(Collectors.toList());
+        return listUserModel.stream().map(UserModelDTO::new).collect(Collectors.toList());
+    }
+
+    //Method to list a user by username
+    public List<UserModelDTO> findByUsername(String username) {
+        Optional<UserModel> listUserByUsername = repository.findByUsername(username);
+        return listUserByUsername.stream().map(UserModelDTO::new).collect(Collectors.toList());
+    }
+
+    //Method to list a user by id
+    public List<UserModelDTO> findByUserId(Integer id) {
+        Optional<UserModel> listUserByUserId = repository.findByUserId(id);
+        return listUserByUserId.stream().map(UserModelDTO::new).collect(Collectors.toList());
     }
 }

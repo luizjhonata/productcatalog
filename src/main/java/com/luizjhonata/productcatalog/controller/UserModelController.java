@@ -34,4 +34,18 @@ public class UserModelController {
         List<UserModelDTO> listUserModel = service.findAll();
         return ResponseEntity.ok().body(listUserModel);
     }
+
+    //Endpoint to get a user by username
+    @GetMapping(value = "/username/{username}")
+    public ResponseEntity<List<UserModelDTO>> findByUsername(@PathVariable String username) {
+        List<UserModelDTO> listUserModel = service.findByUsername(username);
+        return ResponseEntity.ok().body(listUserModel);
+    }
+
+    //Endpoint to get a user by ID
+    @GetMapping(value = "/id/{id}")
+    public ResponseEntity<List<UserModelDTO>> findByUserId(@PathVariable Integer id) {
+        List<UserModelDTO> listUserModel = service.findByUserId(id);
+        return ResponseEntity.ok().body(listUserModel);
+    }
 }

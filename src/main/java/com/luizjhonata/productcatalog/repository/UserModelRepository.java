@@ -10,4 +10,6 @@ public interface UserModelRepository extends JpaRepository<UserModel, UUID> {
 
     Optional<UserModel> findByUsername(String username);
 
+    Optional<UserModel> findByUserId(Integer id);
+
 }
