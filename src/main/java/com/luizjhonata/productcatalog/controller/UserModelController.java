@@ -48,4 +48,18 @@ public class UserModelController {
         List<UserModelDTO> listUserModel = service.findById(id);
         return ResponseEntity.ok().body(listUserModel);
     }
+
+    //Endpoint to update the username in a user
+    @PutMapping(value = "/update/username/{id}")
+    public ResponseEntity<UserModelDTO> updateUsername(@PathVariable Integer id, String username) {
+        UserModelDTO updateUsernameUser = service.updateUsername(id, username);
+        return ResponseEntity.ok(updateUsernameUser);
+    }
+
+    //Endpoint to update the name in a user
+    @PutMapping(value = "/update/name/{id}")
+    public ResponseEntity<UserModelDTO> updateName(@PathVariable Integer id, String name) {
+        UserModelDTO updateNameUser = service.updateName(id, name);
+        return ResponseEntity.ok(updateNameUser);
+    }
 }

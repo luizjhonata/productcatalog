@@ -47,4 +47,24 @@ public class UserModelService {
         Optional<UserModel> listUserById = repository.findById(id);
         return listUserById.stream().map(UserModelDTO::new).collect(Collectors.toList());
     }
+
+    //Method to update the username in a user
+    public UserModelDTO updateUsername(Integer id, String username) {
+        if(repository.existsById(id)) {
+            UserModel updateUsernameUser = repository.getReferenceById(id);
+            updateUsernameUser.setUsername(username);
+            repository.save(updateUsernameUser);
+        }
+        return null;
+    }
+
+    //Method to update the name in a user
+    public UserModelDTO updateName(Integer id, String name) {
+        if(repository.existsById(id)) {
+            UserModel updateNameUser = repository.getReferenceById(id);
+            updateNameUser.setName(name);
+            repository.save(updateNameUser);
+        }
+        return null;
+    }
 }
