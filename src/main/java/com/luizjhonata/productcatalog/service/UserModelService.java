@@ -1,6 +1,5 @@
 package com.luizjhonata.productcatalog.service;
 
-import com.luizjhonata.productcatalog.dto.ProductModelDTO;
 import com.luizjhonata.productcatalog.dto.UserModelDTO;
 import com.luizjhonata.productcatalog.models.UserModel;
 import com.luizjhonata.productcatalog.repository.UserModelRepository;
@@ -22,12 +21,12 @@ public class UserModelService {
     //Method to insert new users
     @Transactional
     public UserModelDTO insert(@RequestBody UserModelDTO newUserDTO) {
-       UserModel newUser = new UserModel();
-       newUser.setName(newUserDTO.getName());
-       newUser.setUsername(newUserDTO.getUsername());
-       newUser.setPassword(newUserDTO.getPassword());
-       newUser.setRoleModels(newUserDTO.getRoleModels());
-       repository.save(newUser);
+        UserModel newUser = new UserModel();
+        newUser.setName(newUserDTO.getName());
+        newUser.setUsername(newUserDTO.getUsername());
+        newUser.setPassword(newUserDTO.getPassword());
+        newUser.setRoleModels(newUserDTO.getRoleModels());
+        repository.save(newUser);
         return new UserModelDTO(newUser);
     }
 
@@ -44,8 +43,8 @@ public class UserModelService {
     }
 
     //Method to list a user by id
-    public List<UserModelDTO> findByUserId(Integer id) {
-        Optional<UserModel> listUserByUserId = repository.findByUserId(id);
-        return listUserByUserId.stream().map(UserModelDTO::new).collect(Collectors.toList());
+    public List<UserModelDTO> findById(Integer id) {
+        Optional<UserModel> listUserById = repository.findById(id);
+        return listUserById.stream().map(UserModelDTO::new).collect(Collectors.toList());
     }
 }

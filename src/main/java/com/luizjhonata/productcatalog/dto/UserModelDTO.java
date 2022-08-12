@@ -8,7 +8,7 @@ import java.util.List;
 public class UserModelDTO {
 
 
-    private Integer userId;
+    private Integer id;
 
     private String name;
 
@@ -21,8 +21,8 @@ public class UserModelDTO {
     public UserModelDTO() {
     }
 
-    public UserModelDTO(Integer userId, String name, String username, String password, List<RoleModel> roleModels) {
-        this.userId = userId;
+    public UserModelDTO(Integer id, String name, String username, String password, List<RoleModel> roleModels) {
+        this.id = id;
         this.name = name;
         this.username = username;
         this.password = password;
@@ -30,19 +30,19 @@ public class UserModelDTO {
     }
 
     public UserModelDTO(UserModel userModel) {
-        userId = userModel.getUserId();
+        id = userModel.getId();
         name = userModel.getName();
         username = userModel.getUsername();
         password = userModel.getPassword();
         roleModels = userModel.getRoleModels();
     }
 
-    public Integer getUserId() {
-        return userId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {

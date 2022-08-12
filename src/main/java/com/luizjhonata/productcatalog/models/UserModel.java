@@ -7,15 +7,14 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Table(name = "tb_user")
 public class UserModel implements UserDetails, Serializable {
     private static final long serialVersionUID = 1L;
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer userId;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(name = "user_id")
+    private Integer id;
     @Column(nullable = false)
     private String name;
     @Column(nullable = false, unique = true)
@@ -65,12 +64,12 @@ public class UserModel implements UserDetails, Serializable {
         return true;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {

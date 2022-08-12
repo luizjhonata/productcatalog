@@ -24,7 +24,7 @@ public class UserModelController {
         newUserDTO.setPassword(new BCryptPasswordEncoder().encode(newUserDTO.getPassword()));
         service.insert(newUserDTO);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(newUserDTO.getUserId()).toUri();
+                .buildAndExpand(newUserDTO.getId()).toUri();
         return ResponseEntity.created(uri).body(newUserDTO);
     }
 
@@ -44,8 +44,8 @@ public class UserModelController {
 
     //Endpoint to get a user by ID
     @GetMapping(value = "/id/{id}")
-    public ResponseEntity<List<UserModelDTO>> findByUserId(@PathVariable Integer id) {
-        List<UserModelDTO> listUserModel = service.findByUserId(id);
+    public ResponseEntity<List<UserModelDTO>> findById(@PathVariable Integer id) {
+        List<UserModelDTO> listUserModel = service.findById(id);
         return ResponseEntity.ok().body(listUserModel);
     }
 }
