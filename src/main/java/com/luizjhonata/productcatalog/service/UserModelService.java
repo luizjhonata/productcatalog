@@ -1,9 +1,12 @@
 package com.luizjhonata.productcatalog.service;
 
+import com.luizjhonata.productcatalog.dto.ProductModelDTO;
 import com.luizjhonata.productcatalog.dto.UserModelDTO;
+import com.luizjhonata.productcatalog.models.ProductModel;
 import com.luizjhonata.productcatalog.models.UserModel;
 import com.luizjhonata.productcatalog.repository.UserModelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,7 +27,7 @@ public class UserModelService {
         UserModel newUser = new UserModel();
         newUser.setName(newUserDTO.getName());
         newUser.setUsername(newUserDTO.getUsername());
-        newUser.setPassword(newUserDTO.getPassword());
+        newUser.setPassword(new BCryptPasswordEncoder().encode(newUserDTO.getPassword()));
         newUser.setRoleModels(newUserDTO.getRoleModels());
         repository.save(newUser);
         return new UserModelDTO(newUser);
@@ -72,9 +75,35 @@ public class UserModelService {
     public UserModelDTO updatePassword(Integer id, String password) {
         if(repository.existsById(id)) {
             UserModel updatePasswordUser = repository.getReferenceById(id);
-            updatePasswordUser.setPassword(password);
+            updatePasswordUser.setPassword(new BCryptPasswordEncoder().encode(password));
             repository.save(updatePasswordUser);
         }
         return null;
     }
+
+    //Method to update data in a user
+    @Transactional
+    public UserModelDTO updateUser(@RequestBody UserModelDTO userModelUpdate) {
+        if(repository.existsById(userModelUpdate.getId())) {
+            UserModel updateUser = repository.getReferenceById(userModelUpdate.getId());
+            updateUser.setName(userModelUpdate.getName());
+            updateUser.setUsername(userModelUpdate.getUsername());
+            updateUser.setPassword(new BCryptPasswordEncoder().encode(userModelUpdate.getPassword()));
+            updateUser.setRoleModels(userModelUpdate.getRoleModels());
+            repository.save(updateUser);
+        }
+        return userModelUpdate;
+    }
+
+//    public ProductModelDTO update(@RequestBody ProductModelDTO productModel) {
+//        if(repository.existsById(productModel.getId())) {
+//            ProductModel updateProduct = repository.getReferenceById(productModel.getId());
+//            updateProduct.setCod(productModel.getCod());
+//            updateProduct.setDescription(productModel.getDescription());
+//            updateProduct.setPrice(productModel.getPrice());
+//            updateProduct.setWeight(productModel.getWeight());
+//            repository.save(updateProduct);
+//        }
+//        return productModel;
+//    }
 }

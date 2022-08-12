@@ -1,5 +1,6 @@
 package com.luizjhonata.productcatalog.controller;
 
+import com.luizjhonata.productcatalog.dto.ProductModelDTO;
 import com.luizjhonata.productcatalog.dto.UserModelDTO;
 import com.luizjhonata.productcatalog.service.UserModelService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,6 @@ public class UserModelController {
     //Endpoint to insert a new user
     @PostMapping(value = "/insert")
     public ResponseEntity<UserModelDTO> insert(@RequestBody UserModelDTO newUserDTO) {
-        newUserDTO.setPassword(new BCryptPasswordEncoder().encode(newUserDTO.getPassword()));
         service.insert(newUserDTO);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(newUserDTO.getId()).toUri();
@@ -68,5 +68,12 @@ public class UserModelController {
     public ResponseEntity<UserModelDTO> updatePassword(@PathVariable Integer id, String password) {
         UserModelDTO updatePasswordUser = service.updatePassword(id, new BCryptPasswordEncoder().encode(password));
         return ResponseEntity.ok(updatePasswordUser);
+    }
+
+    //Endpoint to update all data in a user
+    @PutMapping(value = "/update/{id}")
+    public ResponseEntity<UserModelDTO> update(@PathVariable Integer id, @RequestBody UserModelDTO userModelUpdate) {
+        service.updateUser(userModelUpdate);
+        return ResponseEntity.ok(userModelUpdate);
     }
 }
