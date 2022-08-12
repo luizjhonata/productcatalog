@@ -62,4 +62,11 @@ public class UserModelController {
         UserModelDTO updateNameUser = service.updateName(id, name);
         return ResponseEntity.ok(updateNameUser);
     }
+
+    //Endpoint to update a user's password
+    @PutMapping(value = "/update/password/{id}")
+    public ResponseEntity<UserModelDTO> updatePassword(@PathVariable Integer id, String password) {
+        UserModelDTO updatePasswordUser = service.updatePassword(id, new BCryptPasswordEncoder().encode(password));
+        return ResponseEntity.ok(updatePasswordUser);
+    }
 }

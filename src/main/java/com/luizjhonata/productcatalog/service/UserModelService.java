@@ -67,4 +67,14 @@ public class UserModelService {
         }
         return null;
     }
+
+    //Method to update a user's password
+    public UserModelDTO updatePassword(Integer id, String password) {
+        if(repository.existsById(id)) {
+            UserModel updatePasswordUser = repository.getReferenceById(id);
+            updatePasswordUser.setPassword(password);
+            repository.save(updatePasswordUser);
+        }
+        return null;
+    }
 }
