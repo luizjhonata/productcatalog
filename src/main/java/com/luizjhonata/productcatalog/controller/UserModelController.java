@@ -1,6 +1,5 @@
 package com.luizjhonata.productcatalog.controller;
 
-import com.luizjhonata.productcatalog.dto.ProductModelDTO;
 import com.luizjhonata.productcatalog.dto.UserModelDTO;
 import com.luizjhonata.productcatalog.service.UserModelService;
 import org.springframework.beans.factory.annotation.Autowired;

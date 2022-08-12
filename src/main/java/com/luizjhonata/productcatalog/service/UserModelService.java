@@ -1,8 +1,6 @@
 package com.luizjhonata.productcatalog.service;
 
-import com.luizjhonata.productcatalog.dto.ProductModelDTO;
 import com.luizjhonata.productcatalog.dto.UserModelDTO;
-import com.luizjhonata.productcatalog.models.ProductModel;
 import com.luizjhonata.productcatalog.models.UserModel;
 import com.luizjhonata.productcatalog.repository.UserModelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,16 +92,4 @@ public class UserModelService {
         }
         return userModelUpdate;
     }
-
-//    public ProductModelDTO update(@RequestBody ProductModelDTO productModel) {
-//        if(repository.existsById(productModel.getId())) {
-//            ProductModel updateProduct = repository.getReferenceById(productModel.getId());
-//            updateProduct.setCod(productModel.getCod());
-//            updateProduct.setDescription(productModel.getDescription());
-//            updateProduct.setPrice(productModel.getPrice());
-//            updateProduct.setWeight(productModel.getWeight());
-//            repository.save(updateProduct);
-//        }
-//        return productModel;
-//    }
 }
