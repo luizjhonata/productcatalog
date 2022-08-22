@@ -8,8 +8,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
+
 
 @RestController
 @RequestMapping(value = "users")
@@ -20,7 +22,7 @@ public class UserModelController {
 
     //Endpoint to insert a new user
     @PostMapping(value = "/insert")
-    public ResponseEntity<UserModelDTO> insert(@RequestBody UserModelDTO newUserDTO) {
+    public ResponseEntity<UserModelDTO> insert(@Valid @RequestBody UserModelDTO newUserDTO) {
         service.insert(newUserDTO);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(newUserDTO.getId()).toUri();
