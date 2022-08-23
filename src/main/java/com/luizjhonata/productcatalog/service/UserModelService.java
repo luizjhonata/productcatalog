@@ -9,8 +9,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
+import javax.validation.Validator;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -19,14 +23,29 @@ public class UserModelService {
     @Autowired
     private UserModelRepository repository;
 
+    @Autowired
+    private Validator validator;
+
     //Method to insert new users
     @Transactional
     public UserModelDTO insert(@RequestBody UserModelDTO newUserDTO) {
+
         UserModel newUser = new UserModel();
         newUser.setName(newUserDTO.getName());
         newUser.setUsername(newUserDTO.getUsername());
-        newUser.setPassword(new BCryptPasswordEncoder().encode(newUserDTO.getPassword()));
+        newUser.setPassword(newUserDTO.getPassword());
         newUser.setRoleModels(newUserDTO.getRoleModels());
+
+        Set<ConstraintViolation<UserModel>> violations = validator.validate(newUser);
+        if (!violations.isEmpty()) {
+            StringBuilder sb = new StringBuilder();
+            for (ConstraintViolation<UserModel> constraintViolation : violations) {
+                sb.append(constraintViolation.getMessage());
+            }
+            throw new ConstraintViolationException("Error occurred: " + sb.toString(), violations);
+        }
+
+        newUser.setPassword(new BCryptPasswordEncoder().encode(newUserDTO.getPassword()));
         repository.save(newUser);
         return new UserModelDTO(newUser);
     }

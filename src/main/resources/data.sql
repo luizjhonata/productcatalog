@@ -15,9 +15,9 @@ INSERT INTO tb_product (cod, description, price, weight) VALUES('TEJSGDN200', 'T
 INSERT INTO tb_product (cod, description, price, weight) VALUES('TEFFDN300', 'TE FLANGEADO DN300', 3309.48, 116);
 INSERT INTO tb_product (cod, description, price, weight) VALUES('TEJGSFDN400X200', 'TE BOLSA FLANGE DN400 X DN200', 2972, 83);
 
-INSERT INTO tb_user (name, username, password) VALUES('CREATOR', 'admin', '$2a$10$e.rSdqIgDDcvsGo4tR.sJ.RxqHvnPw0rVIjsOutuVLNWDjLtGImm6');
+INSERT INTO tb_user (name, username, password) VALUES('CREATOR', 'admin', '$2a$10$HboXOeCKf1aM89rySpfBZeevAkUH2/V4NMjyYOfke6LWCgCyNKBPu');
 
-INSERT INTO tb_user (name, username, password) VALUES('NORMAL USER', 'normaluser', '$2a$10$C38ITkzDINosJPYljGXJpOtsRx6kzSTbZ0A/o/q1uAND5DOQC2YVq');
+INSERT INTO tb_user (name, username, password) VALUES('NORMAL USER', 'normaluser', '$2a$10$JAxyU4nssJWVW66NJ9a31uMtEgxZ8uzeQOKr.d1fR12hrxAXYd/I2');
 
 INSERT INTO tb_role (role_name) VALUES('ROLE_ADMIN');
 

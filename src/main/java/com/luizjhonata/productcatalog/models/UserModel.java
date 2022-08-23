@@ -4,9 +4,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
@@ -21,19 +19,23 @@ public class UserModel implements UserDetails, Serializable {
     @NotNull(message = "Name cannot be null")
     @NotEmpty(message = "Name cannot be empty")
     @NotBlank(message = "Name cannot be blank")
+    @Size(min = 4, message = "Name must have 4 or more characters")
     private String name;
 
-    @NotNull(message = "Name cannot be null")
-    @NotEmpty(message = "Name cannot be empty")
-    @NotBlank(message = "Name cannot be blank")
+    @NotNull(message = "Username cannot be null")
+    @NotEmpty(message = "Username cannot be empty")
+    @NotBlank(message = "Username cannot be blank")
+    @Size(min = 4, max = 15, message = "Username needs to be 4 to 15 characters")
     private String username;
 
-    @NotNull(message = "Name cannot be null")
-    @NotEmpty(message = "Name cannot be empty")
-    @NotBlank(message = "Name cannot be blank")
+    @NotNull(message = "Password must be between 6 to 15 characters")
+    @NotEmpty(message = "Password must be between 6 to 15 characters")
+    @NotBlank(message = "Password must be between 6 to 15 characters")
+    @Size(min = 6, max = 80, message = "Password must be between 6 to 15 characters")
+    @Pattern(regexp = "^.*\\d.*", message = "Password must be between 6 to 15 characters and contain 1 number")
     private String password;
 
-    //tirei o (fetch = FetchType.EAGER)
+    //took the (fetch = FetchType.EAGER) and added @Transactional
     @ManyToMany
     @JoinTable(name = "tb_user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
