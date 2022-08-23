@@ -54,6 +54,7 @@ The user with the role type user has authority to make get operations and the us
 ## In this project i put in pratice my knoledge about: 
 - Java;
 - Spring Boot; 
+- Spring Boot Starter Validation;
 - Spring Data Jpa;
 - Spring Security;
 - Swagger;
