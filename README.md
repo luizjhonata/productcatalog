@@ -1,11 +1,12 @@
 # API REST For a Product Catalog System 
+[![NPM](https://img.shields.io/npm/l/react)](https://github.com/luizjhonata/productcatalog/blob/main/LICENCE)
 
 ## About the project
 The project consist of a REST API for cast iron product catalog, but with some products changes it is possible to be applied to other products.
 
 The project has two main entities, USER and PRODUCT;
 
-USER attributes:
+## USER attributes:
 
 - Id;
 - Name; 
@@ -13,7 +14,7 @@ USER attributes:
 - Password; 
 - RoleModels;
 
-PRODUCT attributes:
+## PRODUCT attributes:
 
 - Id;
 - Cod;
@@ -24,7 +25,7 @@ PRODUCT attributes:
 The system has user and password authentication, with two types of roles(user and admin). 
 The user with the role type user has authority to make get operations and the user with role admin can make get, put and post operations.
 
-Operations that the user with role user has authority to make:
+## Operations that the user with role user has authority to make:
 
 - GET ALL Users;
 - GET Users by Username;
@@ -35,7 +36,7 @@ Operations that the user with role user has authority to make:
 - GET Products by Cod;
 - GET Welcomer;
 
-The user with role admin can do all GETS listeds above and the following PUT and POST operations: 
+## The user with role admin can do all GETS listeds above and the following PUT and POST operations: 
 
 - POST a new user;
 - PUT all data in a user using his Id;
