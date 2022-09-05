@@ -1,6 +1,7 @@
 package com.luizjhonata.productcatalog.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 @Entity
 @Table(name = "tb_product")
@@ -8,13 +9,25 @@ public class ProductModel {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    
+    @NotNull(message = "Cod cannot be null")
+    @NotEmpty(message = "Cod cannot be empty")
+    @NotBlank(message = "Cod cannot be blank")
+    @Size(min = 4, message = "Cod must have 4 or more characters")
     private String cod;
 
+    @NotNull(message = "Description cannot be null")
+    @NotEmpty(message = "Description cannot be empty")
+    @NotBlank(message = "Description cannot be blank")
+    @Size(min = 5, message = "Cod must have 5 or more characters")
     private String description;
 
+    @NotNull(message = "Please enter a price")
+    @Min(value = 0, message = "Price cannot be less than 0")
     private Double price;
 
+    @NotNull(message = "Please enter a weight")
+    @Min(value = 0, message = "Weight cannot be less than 0")
+    @Pattern(regexp = "\\d+", message = "Please enter with a valid weight")
     private Double weight;
 
     public ProductModel() {

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
@@ -44,9 +45,9 @@ public class ProductController {
         return ResponseEntity.ok(product);
     }
 
-    //Endpoint to insert a new prduct
+    //Endpoint to insert a new product
     @PostMapping(value = "/insert")
-    public ResponseEntity<ProductModelDTO> insert(@RequestBody ProductModelDTO productModel) {
+    public ResponseEntity<ProductModelDTO> insert(@Valid @RequestBody ProductModelDTO productModel) {
         service.insert(productModel);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(productModel.getId()).toUri();
