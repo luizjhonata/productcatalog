@@ -24,6 +24,15 @@ The project has two main entities, USER and PRODUCT;
 
 The system has user and password authentication, with two types of roles(user and admin). 
 The user with the role type user has authority to make get operations and the user with role admin can make get, put and post operations.
+We have two users pre-registered to make tests in the system, one with role user and another with role admin.
+
+### User with role user
+- Login: normaluser 
+- Password: normaluser1
+
+### User with role admin
+- Login: admin
+- Password: admin1
 
 ## Operations that the user with role user has authority to make:
 
