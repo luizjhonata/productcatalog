@@ -2,6 +2,7 @@ package com.luizjhonata.productcatalog.controller;
 
 import com.luizjhonata.productcatalog.dto.ProductModelDTO;
 import com.luizjhonata.productcatalog.service.ProductService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +19,7 @@ public class ProductController {
     private ProductService service;
 
     //Endpoint to list all products sorted by id number
+    @Operation(summary = "Get a list off all products sorted by id")
     @GetMapping
     public ResponseEntity<List<ProductModelDTO>> findAll() {
         List<ProductModelDTO> listProduct = service.findAll();
@@ -25,6 +27,7 @@ public class ProductController {
     }
 
     //Endpoint to list all products sorted by cod in alphabetical order
+    @Operation(summary = "Get a list of all products sorted by cod in alphabetical order")
     @GetMapping(value = "/sorted")
     public ResponseEntity<List<ProductModelDTO>> findAllByOrderCodAsc() {
         List<ProductModelDTO> listProduct = service.findAllByOrderCodAsc();
@@ -32,6 +35,7 @@ public class ProductController {
     }
 
     //Endpoint to find a product by id
+    @Operation(summary = "Find a product by his id")
     @GetMapping(value = "/id/{id}")
     public ResponseEntity<List<ProductModelDTO>> findById(@PathVariable Integer id) {
         List<ProductModelDTO> product = service.findById(id);
@@ -39,6 +43,7 @@ public class ProductController {
     }
 
     //Endpoint to find a product by cod
+    @Operation(summary = "Find a product by his COD")
     @GetMapping(value = "/cod/{cod}")
     public ResponseEntity<List<ProductModelDTO>> findByCod(@PathVariable String cod) {
         List<ProductModelDTO> product = service.findByCod(cod);
@@ -46,6 +51,7 @@ public class ProductController {
     }
 
     //Endpoint to insert a new product
+    @Operation(summary = "Insert a new product")
     @PostMapping(value = "/insert")
     public ResponseEntity<ProductModelDTO> insert(@Valid @RequestBody ProductModelDTO productModel) {
         service.insert(productModel);
@@ -55,6 +61,7 @@ public class ProductController {
     }
 
     //Endpoint to update all data in a product
+    @Operation(summary = "Update all data in a product with his ID")
     @PutMapping(value = "/update/{id}")
     public ResponseEntity<ProductModelDTO> update(@PathVariable Integer id, @RequestBody ProductModelDTO productModel) {
         service.update(productModel);
@@ -62,6 +69,7 @@ public class ProductController {
     }
 
     //Endpoint to update the cod in a product
+    @Operation(summary = "Update the product COD with his ID")
     @PutMapping(value = "/update/cod/{id}")
     public ResponseEntity<ProductModelDTO> updateCod(@PathVariable Integer id, String cod) {
         ProductModelDTO updateCodProduct = service.updateCod(id, cod);
@@ -69,6 +77,7 @@ public class ProductController {
     }
 
     //Endpoint to update the Description in a product
+    @Operation(summary = "Update the product DESCRIPTION with his ID")
     @PutMapping(value = "/update/desc/{id}")
     public ResponseEntity<ProductModelDTO> updateDescription(@PathVariable Integer id, String description) {
         ProductModelDTO updateDescriptionProduct = service.updateDescription(id, description);
@@ -76,6 +85,7 @@ public class ProductController {
     }
 
     //Endpoint to update the Price in a product
+    @Operation(summary = "Update the product PRICE with his ID")
     @PutMapping(value = "/update/price/{id}")
     public ResponseEntity<ProductModelDTO> updatePrice(@PathVariable Integer id, Double price) {
         ProductModelDTO updatePriceProduct = service.updatePrice(id, price);
@@ -83,6 +93,7 @@ public class ProductController {
     }
 
     //Endpoint to update the Weight in a product
+    @Operation(summary = "Update the product WEIGHT with his ID")
     @PutMapping(value = "/update/weight/{id}")
     public ResponseEntity<ProductModelDTO> updateWeight(@PathVariable Integer id, Double weight) {
         ProductModelDTO updateWeightProduct = service.updateWeight(id, weight);

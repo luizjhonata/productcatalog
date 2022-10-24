@@ -2,6 +2,7 @@ package com.luizjhonata.productcatalog.controller;
 
 import com.luizjhonata.productcatalog.dto.UserModelDTO;
 import com.luizjhonata.productcatalog.service.UserModelService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -21,6 +22,7 @@ public class UserModelController {
     private UserModelService service;
 
     //Endpoint to insert a new user
+    @Operation(summary = "Insert a New User")
     @PostMapping(value = "/insert")
     public ResponseEntity<UserModelDTO> insert(@Valid @RequestBody UserModelDTO newUserDTO) {
         service.insert(newUserDTO);
@@ -30,6 +32,7 @@ public class UserModelController {
     }
 
     //Endpoint to get all users
+    @Operation(summary = "Get a list of all users")
     @GetMapping
     public ResponseEntity<List<UserModelDTO>> findAll() {
         List<UserModelDTO> listUserModel = service.findAll();
@@ -37,6 +40,7 @@ public class UserModelController {
     }
 
     //Endpoint to get a user by username
+    @Operation(summary = "Find a user by his USERNAME")
     @GetMapping(value = "/username/{username}")
     public ResponseEntity<List<UserModelDTO>> findByUsername(@PathVariable String username) {
         List<UserModelDTO> listUserModel = service.findByUsername(username);
@@ -44,6 +48,7 @@ public class UserModelController {
     }
 
     //Endpoint to get a user by ID
+    @Operation(summary = "Find a user by his ID")
     @GetMapping(value = "/id/{id}")
     public ResponseEntity<List<UserModelDTO>> findById(@PathVariable Integer id) {
         List<UserModelDTO> listUserModel = service.findById(id);
@@ -51,6 +56,7 @@ public class UserModelController {
     }
 
     //Endpoint to update the username in a user
+    @Operation(summary = "Update the USERNAME with his ID")
     @PutMapping(value = "/update/username/{id}")
     public ResponseEntity<UserModelDTO> updateUsername(@PathVariable Integer id, String username) {
         UserModelDTO updateUsernameUser = service.updateUsername(id, username);
@@ -58,6 +64,7 @@ public class UserModelController {
     }
 
     //Endpoint to update the name in a user
+    @Operation(summary = "Update the NAME user with his ID")
     @PutMapping(value = "/update/name/{id}")
     public ResponseEntity<UserModelDTO> updateName(@PathVariable Integer id, String name) {
         UserModelDTO updateNameUser = service.updateName(id, name);
@@ -65,6 +72,7 @@ public class UserModelController {
     }
 
     //Endpoint to update a user's password
+    @Operation(summary = "Update the PASSWORD user with his ID")
     @PutMapping(value = "/update/password/{id}")
     public ResponseEntity<UserModelDTO> updatePassword(@PathVariable Integer id, String password) {
         UserModelDTO updatePasswordUser = service.updatePassword(id, new BCryptPasswordEncoder().encode(password));
@@ -72,6 +80,7 @@ public class UserModelController {
     }
 
     //Endpoint to update all data in a user
+    @Operation(summary = "Update ALL user data with his ID")
     @PutMapping(value = "/update/{id}")
     public ResponseEntity<UserModelDTO> update(@PathVariable Integer id, @RequestBody UserModelDTO userModelUpdate) {
         service.updateUser(userModelUpdate);
