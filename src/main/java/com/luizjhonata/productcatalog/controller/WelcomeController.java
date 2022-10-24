@@ -13,7 +13,7 @@ public class WelcomeController {
     @GetMapping("/")
     public String welcome(Principal principal) {
         String name = principal.getName();
-        return "Hello \" +name+ \"! Welcome to Product Catalog API! \\n\" +\n" +
-                "                \"This API was designed to be used by companies that works with sales of connections and pipes of cast iron.";
+        return "Hello " +name+ "!" + "\r\n Welcome to Product Catalog API!" +
+                " \r\n This API was designed to be used by companies that works with sales of connections and pipes of cast iron.";
     }
 }
