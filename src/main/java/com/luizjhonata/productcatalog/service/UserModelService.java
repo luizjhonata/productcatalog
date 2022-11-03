@@ -98,7 +98,6 @@ public class UserModelService {
             repository.save(updatePasswordUser);
         }
         else {
-            System.out.println("PASSEI DIRETO ELSE UPDATE PASSWORD");
             throw new InvalidPasswordException("Password must be between 6 to 15 characters and contain 1 number");
         }
         return null;
