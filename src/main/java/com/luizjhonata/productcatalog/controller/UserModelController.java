@@ -74,8 +74,9 @@ public class UserModelController {
     //Endpoint to update a user's password
     @Operation(summary = "Update the PASSWORD user with his ID")
     @PutMapping(value = "/update/password/{id}")
-    public ResponseEntity<UserModelDTO> updatePassword(@PathVariable Integer id, String password) {
-        UserModelDTO updatePasswordUser = service.updatePassword(id, new BCryptPasswordEncoder().encode(password));
+    public ResponseEntity<UserModelDTO> updatePassword(@PathVariable Integer id, String password) throws Exception {
+//        UserModelDTO updatePasswordUser = service.updatePassword(id, new BCryptPasswordEncoder().encode(password));
+        UserModelDTO updatePasswordUser = service.updatePassword(id, password);
         return ResponseEntity.ok(updatePasswordUser);
     }
 

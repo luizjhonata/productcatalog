@@ -55,4 +55,17 @@ public class ErrorHandlingControllerAdvice {
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(InvalidPasswordException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseBody
+    public ResponseEntity<Map<String, String>> handleInvalidPasswordException(
+            InvalidPasswordException e) throws IOException {
+
+
+        Map<String, String> errorResponse = new HashMap<>();
+        errorResponse.put("message", e.getLocalizedMessage());
+        errorResponse.put("status", e.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
 }

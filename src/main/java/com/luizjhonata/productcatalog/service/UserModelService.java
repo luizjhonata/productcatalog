@@ -1,5 +1,6 @@
 package com.luizjhonata.productcatalog.service;
 
+import com.luizjhonata.productcatalog.controlleradvice.InvalidPasswordException;
 import com.luizjhonata.productcatalog.dto.UserModelDTO;
 import com.luizjhonata.productcatalog.models.UserModel;
 import com.luizjhonata.productcatalog.repository.UserModelRepository;
@@ -88,12 +89,17 @@ public class UserModelService {
         return null;
     }
 
-    //Method to update a user's password
-    public UserModelDTO updatePassword(Integer id, String password) {
-        if(repository.existsById(id)) {
+//    Method to update a user's password
+    public UserModelDTO updatePassword(Integer id, String password) throws Exception{
+        String passwordPattern = "^(?=.*[a-zA-Z])(?=.*[0-9]).{6,15}$";
+        if(repository.existsById(id) && password.matches(passwordPattern)){
             UserModel updatePasswordUser = repository.getReferenceById(id);
             updatePasswordUser.setPassword(new BCryptPasswordEncoder().encode(password));
             repository.save(updatePasswordUser);
+        }
+        else {
+            System.out.println("PASSEI DIRETO ELSE UPDATE PASSWORD");
+            throw new InvalidPasswordException("Password must be between 6 to 15 characters and contain 1 number");
         }
         return null;
     }
