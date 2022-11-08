@@ -29,7 +29,13 @@ public class UserModelService {
 
     //Method to insert new users
     @Transactional
-    public UserModelDTO insert(@RequestBody UserModelDTO newUserDTO) {
+    public UserModelDTO insert(@RequestBody UserModelDTO newUserDTO) throws Exception{
+
+        String passwordPattern = "^(?=.*[a-zA-Z])(?=.*[0-9]).{6,15}$";
+        String password = newUserDTO.getPassword();
+        if (! password.matches(passwordPattern)){
+            throw new InvalidPasswordException("Password must be between 6 to 15 characters and contain 1 number");
+        }
 
         UserModel newUser = new UserModel();
         newUser.setName(newUserDTO.getName());

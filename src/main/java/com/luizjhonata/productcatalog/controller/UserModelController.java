@@ -5,7 +5,6 @@ import com.luizjhonata.productcatalog.service.UserModelService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -24,7 +23,7 @@ public class UserModelController {
     //Endpoint to insert a new user
     @Operation(summary = "Insert a New User")
     @PostMapping(value = "/insert")
-    public ResponseEntity<UserModelDTO> insert(@Valid @RequestBody UserModelDTO newUserDTO) {
+    public ResponseEntity<UserModelDTO> insert(@Valid @RequestBody UserModelDTO newUserDTO) throws Exception{
         service.insert(newUserDTO);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(newUserDTO.getId()).toUri();
