@@ -102,6 +102,16 @@ public class ProductService {
         return null;
     }
 
+    //Method to update the Details in a product
+    public ProductModelDTO updateDetails(Integer id, String details) {
+        if(repository.existsById(id)) {
+            ProductModel updateDetailsProduct = repository.getReferenceById(id);
+            updateDetailsProduct.setDetails(details);
+            repository.save(updateDetailsProduct);
+        }
+        return null;
+    }
+
     //Method to delete a product
     public void deleteById(Integer id) {
         if (repository.existsById(id)) {

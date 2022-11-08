@@ -100,6 +100,14 @@ public class ProductController {
         return ResponseEntity.ok(updateWeightProduct);
     }
 
+    //Endpoint to update the Details in a product
+    @Operation(summary = "Update the product DETAILS with his ID")
+    @PutMapping(value = "/update/details/{id}")
+    public ResponseEntity<ProductModelDTO> updateDetails(@PathVariable Integer id, String details) {
+        ProductModelDTO updateDetailsProduct = service.updateDetails(id, details);
+        return ResponseEntity.ok(updateDetailsProduct);
+    }
+
     //Endpoint to delete a product with his ID
     @Operation(summary = "Delete a product data with his ID")
     @DeleteMapping("/{id}")
