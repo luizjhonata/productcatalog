@@ -122,4 +122,10 @@ public class UserModelService {
         }
         return userModelUpdate;
     }
+    //Method to delete a user
+    public void deleteById(Integer id) {
+        if (repository.existsById(id)) {
+            repository.deleteById(id);
+        }
+    }
 }

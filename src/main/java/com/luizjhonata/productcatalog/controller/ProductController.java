@@ -99,4 +99,11 @@ public class ProductController {
         ProductModelDTO updateWeightProduct = service.updateWeight(id, weight);
         return ResponseEntity.ok(updateWeightProduct);
     }
+
+    //Endpoint to delete a product with his ID
+    @Operation(summary = "Delete a product data with his ID")
+    @DeleteMapping("/{id}")
+    public void deleteById(@PathVariable("id") Integer id) {
+        service.deleteById(id);
+    }
 }

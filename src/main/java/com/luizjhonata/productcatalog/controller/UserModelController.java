@@ -86,4 +86,11 @@ public class UserModelController {
         service.updateUser(userModelUpdate);
         return ResponseEntity.ok(userModelUpdate);
     }
+
+    //Endpoint to delete a user with his ID
+    @Operation(summary = "Delete a user data with his ID")
+    @DeleteMapping("/{id}")
+    public void deleteById(@PathVariable("id") Integer id) {
+        service.deleteById(id);
+    }
 }

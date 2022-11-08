@@ -101,5 +101,10 @@ public class ProductService {
         return null;
     }
 
-
+    //Method to delete a product
+    public void deleteById(Integer id) {
+        if (repository.existsById(id)) {
+            repository.deleteById(id);
+        }
+    }
 }
