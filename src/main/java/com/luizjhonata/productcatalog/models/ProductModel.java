@@ -27,7 +27,6 @@ public class ProductModel {
 
     @NotNull(message = "Please enter a weight")
     @Min(value = 0, message = "Weight cannot be less than 0")
-    @Pattern(regexp = "\\d+", message = "Please enter with a valid weight")
     private Double weight;
 
     public ProductModel() {
