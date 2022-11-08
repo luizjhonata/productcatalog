@@ -27,13 +27,19 @@ public class UserModelService {
     @Autowired
     private Validator validator;
 
+    //Method to verification password pattern
+    public boolean passwordVerification(String password) {
+        String passwordPattern = "^(?=.*[a-zA-Z])(?=.*[0-9]).{6,15}$";
+        if (password.matches(passwordPattern)) {
+            return true;
+        }
+        return false;
+    }
+
     //Method to insert new users
     @Transactional
     public UserModelDTO insert(@RequestBody UserModelDTO newUserDTO) throws Exception{
-
-        String passwordPattern = "^(?=.*[a-zA-Z])(?=.*[0-9]).{6,15}$";
-        String password = newUserDTO.getPassword();
-        if (! password.matches(passwordPattern)){
+        if (! passwordVerification(newUserDTO.getPassword())){
             throw new InvalidPasswordException("Password must be between 6 to 15 characters and contain 1 number");
         }
 
@@ -97,8 +103,7 @@ public class UserModelService {
 
 //    Method to update a user's password
     public UserModelDTO updatePassword(Integer id, String password) throws Exception{
-        String passwordPattern = "^(?=.*[a-zA-Z])(?=.*[0-9]).{6,15}$";
-        if(repository.existsById(id) && password.matches(passwordPattern)){
+        if(repository.existsById(id) && passwordVerification(password)){
             UserModel updatePasswordUser = repository.getReferenceById(id);
             updatePasswordUser.setPassword(new BCryptPasswordEncoder().encode(password));
             repository.save(updatePasswordUser);
