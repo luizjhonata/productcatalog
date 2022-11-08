@@ -29,15 +29,18 @@ public class ProductModel {
     @Min(value = 0, message = "Weight cannot be less than 0")
     private Double weight;
 
+    private String details;
+
     public ProductModel() {
     }
 
-    public ProductModel(Integer id, String cod, String description, Double price, Double weight) {
+    public ProductModel(Integer id, String cod, String description, Double price, Double weight, String details) {
         this.id = id;
         this.cod = cod;
         this.description = description;
         this.price = price;
         this.weight = weight;
+        this.details = details;
     }
 
     public Integer getId() {
@@ -78,5 +81,13 @@ public class ProductModel {
 
     public void setWeight(Double weight) {
         this.weight = weight;
+    }
+
+    public String getDetails() {
+        return details;
+    }
+
+    public void setDetails(String details) {
+        this.details = details;
     }
 }

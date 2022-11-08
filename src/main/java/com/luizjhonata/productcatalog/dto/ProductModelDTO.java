@@ -14,15 +14,18 @@ public class ProductModelDTO {
 
     private Double weight;
 
+    private String details;
+
     public ProductModelDTO() {
     }
 
-    public ProductModelDTO(Integer id, String cod, String description, Double price, Double weight) {
+    public ProductModelDTO(Integer id, String cod, String description, Double price, Double weight, String details) {
         this.id = id;
         this.cod = cod;
         this.description = description;
         this.price = price;
         this.weight = weight;
+        this.details = details;
     }
 
     public ProductModelDTO(ProductModel productModel) {
@@ -31,6 +34,7 @@ public class ProductModelDTO {
         description = productModel.getDescription();
         price = productModel.getPrice();
         weight = productModel.getWeight();
+        details = productModel.getDetails();
     }
 
     public Integer getId() {
@@ -71,5 +75,13 @@ public class ProductModelDTO {
 
     public void setWeight(Double weight) {
         this.weight = weight;
+    }
+
+    public String getDetails() {
+        return details;
+    }
+
+    public void setDetails(String details) {
+        this.details = details;
     }
 }

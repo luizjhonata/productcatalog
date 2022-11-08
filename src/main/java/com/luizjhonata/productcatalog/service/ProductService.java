@@ -43,7 +43,7 @@ public class ProductService {
     //Method to insert a new product
     public ProductModelDTO insert(@RequestBody ProductModelDTO productModelDTO){
         ProductModel newProduct = new ProductModel(null, productModelDTO.getCod(), productModelDTO.getDescription(),
-                productModelDTO.getPrice(), productModelDTO.getWeight());
+                productModelDTO.getPrice(), productModelDTO.getWeight(), productModelDTO.getDetails());
         repository.save(newProduct);
         return new ProductModelDTO(newProduct);
     }
@@ -56,6 +56,7 @@ public class ProductService {
             updateProduct.setDescription(productModel.getDescription());
             updateProduct.setPrice(productModel.getPrice());
             updateProduct.setWeight(productModel.getWeight());
+            updateProduct.setDetails(productModel.getDetails());
             repository.save(updateProduct);
         }
         return productModel;

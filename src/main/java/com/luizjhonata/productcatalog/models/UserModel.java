@@ -28,12 +28,6 @@ public class UserModel implements UserDetails, Serializable {
     @Size(min = 4, max = 15, message = "Username needs to be 4 to 15 characters")
     private String username;
 
-    //Removed annotations to do password validation in service layer
-//    @NotNull(message = "Password must be between 6 to 15 characters")
-//    @NotEmpty(message = "Password must be between 6 to 15 characters")
-//    @NotBlank(message = "Password must be between 6 to 15 characters")
-//    @Size(min = 6, max = 80, message = "Password must be between 6 to 15 characters")
-//    @Pattern(regexp = "^.*\\d.*", message = "Password must be between 6 to 15 characters and contain 1 number")
     private String password;
 
     //took the (fetch = FetchType.EAGER) and added @Transactional
