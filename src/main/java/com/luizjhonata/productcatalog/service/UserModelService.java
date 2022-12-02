@@ -82,6 +82,7 @@ public class UserModelService {
     }
 
     //Method to update the username in a user
+    @Transactional
     public UserModelDTO updateUsername(Integer id, String username) {
         if(repository.existsById(id)) {
             UserModel updateUsernameUser = repository.getReferenceById(id);
@@ -92,6 +93,7 @@ public class UserModelService {
     }
 
     //Method to update the name in a user
+    @Transactional
     public UserModelDTO updateName(Integer id, String name) {
         if(repository.existsById(id)) {
             UserModel updateNameUser = repository.getReferenceById(id);
@@ -101,7 +103,8 @@ public class UserModelService {
         return null;
     }
 
-//    Method to update a user's password
+    //    Method to update a user's password
+    @Transactional
     public UserModelDTO updatePassword(Integer id, String password) throws Exception{
         if(repository.existsById(id) && passwordVerification(password)){
             UserModel updatePasswordUser = repository.getReferenceById(id);
@@ -128,6 +131,7 @@ public class UserModelService {
         return userModelUpdate;
     }
     //Method to delete a user
+    @Transactional
     public void deleteById(Integer id) {
         if (repository.existsById(id)) {
             repository.deleteById(id);

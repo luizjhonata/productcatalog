@@ -5,6 +5,7 @@ import com.luizjhonata.productcatalog.models.ProductModel;
 import com.luizjhonata.productcatalog.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import java.util.List;
 import java.util.Optional;
@@ -49,6 +50,7 @@ public class ProductService {
     }
 
     //Method to update all data in a product
+    @Transactional
     public ProductModelDTO update(@RequestBody ProductModelDTO productModel) {
         if(repository.existsById(productModel.getId())) {
             ProductModel updateProduct = repository.getReferenceById(productModel.getId());
@@ -63,6 +65,7 @@ public class ProductService {
     }
 
     //Method to update the cod in a product
+    @Transactional
     public ProductModelDTO updateCod(Integer id, String cod) {
         if(repository.existsById(id)) {
             ProductModel updateCodProduct = repository.getReferenceById(id);
@@ -73,6 +76,7 @@ public class ProductService {
     }
 
     //Method to update the description in a product
+    @Transactional
     public ProductModelDTO updateDescription(Integer id, String Description) {
         if(repository.existsById(id)) {
             ProductModel updateDescriptionProduct = repository.getReferenceById(id);
@@ -83,6 +87,7 @@ public class ProductService {
     }
 
     //Method to update the price in a product
+    @Transactional
     public ProductModelDTO updatePrice(Integer id, Double price) {
         if(repository.existsById(id)) {
             ProductModel updatePriceProduct = repository.getReferenceById(id);
@@ -93,6 +98,7 @@ public class ProductService {
     }
 
     //Method to update the Weight in a product
+    @Transactional
     public ProductModelDTO updateWeight(Integer id, Double weight) {
         if(repository.existsById(id)) {
             ProductModel updateWeightProduct = repository.getReferenceById(id);
@@ -103,6 +109,7 @@ public class ProductService {
     }
 
     //Method to update the Details in a product
+    @Transactional
     public ProductModelDTO updateDetails(Integer id, String details) {
         if(repository.existsById(id)) {
             ProductModel updateDetailsProduct = repository.getReferenceById(id);
@@ -113,6 +120,7 @@ public class ProductService {
     }
 
     //Method to delete a product
+    @Transactional
     public void deleteById(Integer id) {
         if (repository.existsById(id)) {
             repository.deleteById(id);
