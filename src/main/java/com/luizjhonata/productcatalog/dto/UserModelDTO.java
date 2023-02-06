@@ -4,6 +4,7 @@ import com.luizjhonata.productcatalog.models.RoleModel;
 import com.luizjhonata.productcatalog.models.UserModel;
 
 import java.util.List;
+import java.util.Optional;
 
 public class UserModelDTO {
 
@@ -35,6 +36,9 @@ public class UserModelDTO {
         username = userModel.getUsername();
         password = userModel.getPassword();
         roleModels = userModel.getRoleModels();
+    }
+
+    public UserModelDTO(Optional<UserModel> listUserByUsername) {
     }
 
     public Integer getId() {

@@ -1,8 +1,10 @@
 package com.luizjhonata.productcatalog.controller;
 
 import com.luizjhonata.productcatalog.dto.UserModelDTO;
+import com.luizjhonata.productcatalog.models.RoleModel;
 import com.luizjhonata.productcatalog.service.UserModelService;
 import io.swagger.v3.oas.annotations.Operation;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +25,7 @@ public class UserModelController {
     //Endpoint to insert a new user
     @Operation(summary = "Insert a New User")
     @PostMapping(value = "/insert")
-    public ResponseEntity<UserModelDTO> insert(@Valid @RequestBody UserModelDTO newUserDTO) throws Exception{
+    public ResponseEntity<UserModelDTO> insert(@Valid @RequestBody UserModelDTO newUserDTO) throws Exception {
         service.insert(newUserDTO);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(newUserDTO.getId()).toUri();
@@ -93,4 +95,23 @@ public class UserModelController {
     public void deleteById(@PathVariable("id") Integer id) {
         service.deleteById(id);
     }
+
+    @PostMapping("/role/save")
+    public ResponseEntity<RoleModel> saveRole(@RequestBody RoleModel role) {
+        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/users/role/save").toUriString());
+        return ResponseEntity.created(uri).body(service.saveRole(role));
+    }
+
+//    @PostMapping("/role/addtouser")
+//    public ResponseEntity<?> addRoleToUser(@RequestBody RoleToUserForm form) {
+//        service.addRoleToUser(form.getUsername(), form.getRoleName());
+//        return ResponseEntity.ok().build();
+//    }
+
+}
+
+@Data
+class RoleToUserForm {
+    private String username;
+    private String roleName;
 }
