@@ -24,7 +24,8 @@ The project has two main entities, USER and PRODUCT;
 - Weight;
 - Details;
 
-The system has user and password authentication, with two types of roles(user and admin). 
+The system has JWT Token, you need to make authentication with user and password, to receive a jwt token and access the application.
+The system has two types of roles(user and admin). 
 The user with the role type user has authority to make get operations and the user with role admin can make get, put, post and delete operations.
 We have two users pre-registered to make tests in the system, one with role user and another with role admin.
 
