@@ -94,6 +94,10 @@ cd productcatalog
 ./mvnw spring-boot:run
 ```
 
+If you wanna to make online tests you can do it using the link bellow, the API is deployed in RAILWAY.
+
+https://productcatalog-product-catalog.up.railway.app
+
 # Autor
 
 Jhonata de Souza Luiz
