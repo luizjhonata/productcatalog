@@ -1,20 +1,12 @@
 package com.luizjhonata.productcatalog.auth;
 
 import com.luizjhonata.productcatalog.config.JwtService;
-import com.luizjhonata.productcatalog.enums.RoleName;
-import com.luizjhonata.productcatalog.models.RoleModel;
-import com.luizjhonata.productcatalog.models.UserModel;
 import com.luizjhonata.productcatalog.repository.UserModelRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static com.luizjhonata.productcatalog.enums.RoleName.ROLE_USER;
 
 @Service
 @RequiredArgsConstructor
