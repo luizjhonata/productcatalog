@@ -71,7 +71,6 @@ We have two users pre-registered to make tests in the system, one with role user
 - Spring Boot Starter Validation;
 - Spring Data Jpa;
 - Spring Security;
-- Swagger;
 - H2;  
 - MVC; 
 - REST API;
