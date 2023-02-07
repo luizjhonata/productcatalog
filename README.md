@@ -29,6 +29,8 @@ The system has two types of roles(user and admin).
 The user with the role type user has authority to make get operations and the user with role admin can make get, put, post and delete operations.
 We have two users pre-registered to make tests in the system, one with role user and another with role admin.
 
+The method path to do authentication is {URL}/api/v1/auth/authenticate
+
 ### User with role user
 - Login: normaluser 
 - Password: normaluser1
@@ -71,6 +73,7 @@ We have two users pre-registered to make tests in the system, one with role user
 - Spring Boot Starter Validation;
 - Spring Data Jpa;
 - Spring Security;
+- JWT;
 - H2;  
 - MVC; 
 - REST API;
