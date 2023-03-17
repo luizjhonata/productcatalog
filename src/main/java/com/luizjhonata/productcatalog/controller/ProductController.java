@@ -20,6 +20,8 @@ public class ProductController {
 
     //Endpoint to list all products sorted by id number
     @Operation(summary = "Get a list off all products sorted by id")
+//    @CrossOrigin(origins = "http://127.0.0.1:5173/")
+    @CrossOrigin(origins = "https://roaring-hummingbird-96066b.netlify.app/")
     @GetMapping
     public ResponseEntity<List<ProductModelDTO>> findAll() {
         List<ProductModelDTO> listProduct = service.findAll();
@@ -28,6 +30,8 @@ public class ProductController {
 
     //Endpoint to list all products sorted by cod in alphabetical order
     @Operation(summary = "Get a list of all products sorted by cod in alphabetical order")
+//    @CrossOrigin(origins = "http://127.0.0.1:5173")
+    @CrossOrigin(origins = "https://roaring-hummingbird-96066b.netlify.app/")
     @GetMapping(value = "/sorted")
     public ResponseEntity<List<ProductModelDTO>> findAllByOrderCodAsc() {
         List<ProductModelDTO> listProduct = service.findAllByOrderCodAsc();

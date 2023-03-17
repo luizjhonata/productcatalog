@@ -13,6 +13,7 @@ public class AuthenticationController {
 
     @PostMapping("/authenticate")
     @CrossOrigin(origins = {"https://roaring-hummingbird-96066b.netlify.app" })
+//    @CrossOrigin(origins = {"http://127.0.0.1:5173/",  "http://localhost:3000/"})
     public ResponseEntity<AuthenticationResponse> authenticate (
             @RequestBody AuthenticationRequest request
     ){

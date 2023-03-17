@@ -11,6 +11,11 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
@@ -26,6 +31,7 @@ public class SecurityConfiguration {
                 .csrf()
                 .disable()
                 .authorizeHttpRequests()
+//                .antMatchers(HttpMethod.OPTIONS,"/products", "/products/").permitAll()
                 .antMatchers("/v3/api-docs/**").permitAll()
                 .antMatchers("/swagger-ui/**", "/bus/v3/api-docs/**").permitAll()
                 .antMatchers("/api/v1/auth/**").permitAll()
@@ -49,6 +55,5 @@ public class SecurityConfiguration {
         return (web) -> web.ignoring().antMatchers("/h2-console", "/h2-console/**",
                         "/v3/api-docs/**", "/swagger-ui/**", "/bus/v3/api-docs/**");
     }
-
 
 }
