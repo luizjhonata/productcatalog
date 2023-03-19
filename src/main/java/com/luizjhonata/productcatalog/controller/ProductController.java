@@ -48,6 +48,8 @@ public class ProductController {
 
     //Endpoint to find a product by cod
     @Operation(summary = "Find a product by his COD")
+//    @CrossOrigin(origins = "http://127.0.0.1:5173")
+    @CrossOrigin(origins = "https://roaring-hummingbird-96066b.netlify.app/")
     @GetMapping(value = "/cod/{cod}")
     public ResponseEntity<List<ProductModelDTO>> findByCod(@PathVariable String cod) {
         List<ProductModelDTO> product = service.findByCod(cod);
