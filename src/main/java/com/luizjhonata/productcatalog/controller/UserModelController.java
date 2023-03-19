@@ -34,6 +34,8 @@ public class UserModelController {
 
     //Endpoint to get all users
     @Operation(summary = "Get a list of all users")
+//    @CrossOrigin(origins = "http://127.0.0.1:5173")
+    @CrossOrigin(origins = "https://roaring-hummingbird-96066b.netlify.app/")
     @GetMapping
     public ResponseEntity<List<UserModelDTO>> findAll() {
         List<UserModelDTO> listUserModel = service.findAll();
